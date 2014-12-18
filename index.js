@@ -21,11 +21,27 @@ var getUserById = function(id, token){
 	return deferred.promise;
 };
 
-var getUserByEmailAddress = function(emailAddress, token){
+var getUserByEmailAddress = function(emailAddress){
 	var deferred = Q.defer();
 	
 	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
 	request.get(url + "/users/" + emailAddress, function(err, response, body){
+		if ( err ){
+			deferred.reject(err);
+		}
+		else{
+			deferred.resolve(body);
+		}
+	});
+
+	return deferred.promise;
+};
+
+var getUserByToken = function(token){
+	var deferred = Q.defer();
+	
+	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
+	request.get(url + "/users/accessToken/" + token, function(err, response, body){
 		if ( err ){
 			deferred.reject(err);
 		}
