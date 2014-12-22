@@ -9,13 +9,8 @@ var getUserById = function(id, token){
 	var deferred = Q.defer();
 	
 	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
-	request.get(url + "/users/" + id, function(err, response, body){
-		if ( err ){
-			deferred.reject(err);
-		}
-		else{
-			deferred.resolve(body);
-		}
+	utils.get(url + "/users/" + id).then(function(response){
+		deferred.resolve(response);
 	});
 
 	return deferred.promise;
@@ -24,14 +19,8 @@ var getUserById = function(id, token){
 var getUserByEmailAddress = function(emailAddress){
 	var deferred = Q.defer();
 	
-	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
-	request.get(url + "/users/" + emailAddress, function(err, response, body){
-		if ( err ){
-			deferred.reject(err);
-		}
-		else{
-			deferred.resolve(body);
-		}
+	utils.get(url + "/users/" + emailAddress).then(function(response){
+		deferred.resolve(response);
 	});
 
 	return deferred.promise;
@@ -41,13 +30,9 @@ var getUserByToken = function(token){
 	var deferred = Q.defer();
 	
 	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
-	request.get(url + "/users/accessToken/" + token, function(err, response, body){
-		if ( err ){
-			deferred.reject(err);
-		}
-		else{
-			deferred.resolve(body);
-		}
+	
+	utils.get(url + "/users/accessToken/" + token).then(function(response){
+		deferred.resolve(response);
 	});
 
 	return deferred.promise;
@@ -56,14 +41,8 @@ var getUserByToken = function(token){
 var getUsers = function(token){
 	var deferred = Q.defer();
 	
-	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
-	request.get(url + "/users", function(err, response, body){
-		if ( err ){
-			deferred.reject(err);
-		}
-		else{
-			deferred.resolve(body);
-		}
+	utils.get(url + "/users").then(function(response){
+		deferred.resolve(response);
 	});
 
 	return deferred.promise;
