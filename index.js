@@ -18,6 +18,8 @@ var getUserById = function(id, token){
 
 var getUserByEmailAddress = function(emailAddress){
 	var deferred = Q.defer();
+
+	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
 	
 	utils.get(url + "/users/" + emailAddress).then(function(response){
 		deferred.resolve(response);
