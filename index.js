@@ -72,5 +72,6 @@ module.exports = {
 	getUserById : getUserById,
 	getUserByEmailAddress : getUserByEmailAddress,
 	getUserByToken : getUserByToken,
-	getUsers : getUsers
+	getUsers : getUsers,
+	createUser: createUser
 }
