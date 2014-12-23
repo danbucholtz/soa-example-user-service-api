@@ -5,6 +5,23 @@ var utils = require("soa-example-core-utils");
 
 var config = require("soa-example-service-config").config();
 
+var createUser = function(emailAddress, password){
+	var deferred = Q.defer();
+
+	var url = utils.createBaseUrl(config.userServiceIp, config.userServicePort);
+
+	var object = {
+		emailAddress: emailAddress,
+		password: password
+	};
+
+	utils.postJson(object, url + "/register").then(function(user){
+		deferred.resolve(user);
+	});
+
+	return deferred.promise;
+};
+
 var getUserById = function(id, token){
 	var deferred = Q.defer();
 	
