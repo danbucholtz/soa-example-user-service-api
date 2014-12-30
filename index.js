@@ -29,6 +29,7 @@ var getUserById = function(id, token){
 
 	redisUtil.get(id).then(function(user){
 		if ( user ){
+			console.log("User by ID found in Redis");
 			deferred.resolve(user);
 			return;
 		}
@@ -49,6 +50,7 @@ var getUserByEmailAddress = function(emailAddress){
 
 	redisUtil.get(emailAddress).then(function(user){
 		if ( user ){
+			console.log("User by Email found in Redis");
 			deferred.resolve(user);
 			return;
 		}
@@ -69,6 +71,7 @@ var getUserByToken = function(token){
 
 	redisUtil.get(token).then(function(user){
 		if ( user ){
+			console.log("User by Access Token found in Redis");
 			deferred.resolve(user);
 			return;
 		}
